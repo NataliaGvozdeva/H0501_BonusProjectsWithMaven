@@ -1,23 +1,29 @@
+package ru.netology.h0501bonusprojectswithmaven.services;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BonusServiceTest {
-    @org.junit.jupiter.api.Test
-    void shouldCalculateForRegisteredAndUnderLimit() {
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/bonus.csv")
+    void shouldCalculateForRegisteredAndUnderLimit(int expected, int amount, boolean isRegistered) {
         BonusService service = new BonusService();
 
         // подготавливаем данные:
-        long amount = 1000;
-        boolean registered = true;
-        long expected = 30;
+        //long amount = 1000;
+        //boolean registered = true;
+        //long expected = 30;
 
         // вызываем целевой метод:
-        long actual = service.calculate(amount, registered);
+        long actual = service.calculate(amount, isRegistered);
 
         // производим проверку (сравниваем ожидаемый и фактический):
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+/*    @org.junit.jupiter.api.Test
     void shouldCalculateForRegisteredAndOverLimit() {
         BonusService service = new BonusService();
 
@@ -63,5 +69,5 @@ public class BonusServiceTest {
 
         //проводим проверку (сравниваем ожидаемый и фактический):
         assertEquals(expected, actual);
-    }
+    }*/
 }
